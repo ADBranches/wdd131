@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>JavaScript Debugging using DevTools</h1>
+    <p>
+        Area of circle with radius 
+        <span id="radius"></span>: <span id="area"></span>
+    </p>
+</body>
+<script>
+    const radiusOutput = document.getElementById('radius');
+    const areaOutput = document.getElementById('area');
+
+    let area = 0;
+    const PI = 3.14159;
+
+    let radius = 10;
+    area = PI * radius * radius;
+    radiusOutput.textContent = radius;
+    areaOutput.textContent = area.toFixed(2);
+
+    radius = 20;
+    area = PI * radius * radius;
+    radiusOutput.textContent = radius;
+    areaOutput.textContent = area.toFixed(2);
+</script>
+</html>
