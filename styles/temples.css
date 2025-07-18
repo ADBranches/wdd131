@@ -102,12 +102,15 @@ body {
     margin: 0 auto;
   }
   
-  #hamburger svg {
+  #hamburger img {
     width: 1.5rem;
     height: 1.5rem;
     color: white; /* SVG inherits this via currentColor */
   }
   
-  #hamburger:hover svg {
+  #hamburger:hover img {
     color: #1abc9c; /* Hover effect */
   }
+
+  .close-icon { display: none; }
+#hamburger:hover { opacity: 0.8; }
