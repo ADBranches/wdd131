@@ -8,7 +8,8 @@ document.getElementById('hamburger').addEventListener('click', function() {
   
   // Toggling nav visibility
   nav.classList.toggle('show');
-  
+  this.setAttribute('aria-expanded', nav.classList.contains('show'));
+
   // Toggling icons
   if (nav.classList.contains('show')) {
     menuIcon.style.display = 'none';
