@@ -1,6 +1,6 @@
 // Dynamic Footer
 document.querySelector('footer').innerHTML = `
-  ©${new Date().getFullYear()} Edwin Kambale | Uganda 
+  &copy;${new Date().getFullYear()} Edwin Kambale | Uganda 
   Last Modified: ${document.lastModified}
 `;
 
@@ -10,5 +10,5 @@ const calculateWindChill = (temp, windSpeed) =>
     ? (13.12 + 0.6215 * temp - 11.37 * Math.pow(windSpeed, 0.16) + 0.3965 * temp * Math.pow(windSpeed, 0.16)).toFixed(1) + "°C" 
     : "N/A";
 
-// Static Values (Replace with API later)
+// Static Values
 document.getElementById('windchill').textContent = calculateWindChill(10, 5);
