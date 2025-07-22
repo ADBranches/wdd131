@@ -6,11 +6,9 @@ document.getElementById('hamburger').addEventListener('click', function() {
   const menuIcon = this.querySelector('.menu-icon');
   const closeIcon = this.querySelector('.close-icon');
   
-  // Toggling nav visibility
   nav.classList.toggle('show');
   this.setAttribute('aria-expanded', nav.classList.contains('show'));
 
-  // Toggling icons
   if (nav.classList.contains('show')) {
     menuIcon.style.display = 'none';
     closeIcon.style.display = 'block';

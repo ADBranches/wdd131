@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Uganda | Pearl of Africa</title>
+  <meta name="description" content="Explore Uganda's geography, culture, and weather.">
+  <link rel="stylesheet" href="styles/place.css">
+  <script src="scripts/place.js" defer></script>
+</head>
+<body>
+  <header>
+    <h1>Uganda</h1>
+  </header>
+
+  <main>
+    <!-- Hero Image (Responsive) -->
+    <picture>
+      <source srcset="images/uganda-wide.webp" media="(min-width: 1000px)">
+      <source srcset="images/uganda-medium.webp" media="(min-width: 600px)">
+      <img src="images/uganda-small.webp" alt="Uganda landscape with mountains and lakes" width="960" height="300" loading="lazy">
+    </picture>
+
+    <!-- Data Section -->
+    <section class="data" aria-label="Uganda Facts">
+      <h2>Data</h2>
+      <ul>
+        <li><strong>Area:</strong> 241,038 sq km</li>
+        <li><strong>Population:</strong> 45.7 million</li>
+        <li><strong>Capital:</strong> Kampala</li>
+        <li><strong>Languages:</strong> English, Swahili</li>
+        <li><strong>Currency:</strong> Ugandan Shilling</li>
+      </ul>
+    </section>
+
+    <!-- Weather Section -->
+    <section class="weather" aria-label="Weather Conditions">
+      <h2>Weather</h2>
+      <div class="weather-icon"></div> <!-- SVG for mobile -->
+      <ul>
+        <li><strong>Temperature:</strong> 10°C</li>
+        <li><strong>Wind Speed:</strong> 5 km/h</li>
+        <li><strong>Wind Chill:</strong> <span id="windchill">N/A</span></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer></footer>
+</body>
+</html>

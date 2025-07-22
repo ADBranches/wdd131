@@ -1,0 +1,59 @@
+/* Uganda Flag Colors */
+:root {
+  --black: #000000;
+  --yellow: #FCDC04;
+  --red: #D90000;
+}
+
+/* Mobile-First Layout */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 1rem;
+  color: var(--black);
+}
+
+header {
+  background-color: var(--black);
+  color: var(--yellow);
+  padding: 1rem;
+  text-align: center;
+}
+
+.data, .weather {
+  margin: 2rem 0;
+}
+
+.weather-icon {
+  width: 50px;
+  height: 50px;
+  background: url('../images/weather-icon.svg') no-repeat center;
+  margin: 0 auto;
+}
+
+/* Desktop Layout */
+@media (min-width: 768px) {
+  main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .weather h2::after {
+    content: "☀️";
+    margin-left: 10px;
+  }
+}
+
+/* Accessibility: Minimum AA Contrast */
+a, button {
+  color: var(--red);
+}
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: var(--black);
+  color: white;
+}
