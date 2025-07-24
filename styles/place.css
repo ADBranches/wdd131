@@ -1,10 +1,86 @@
 :root {
+  /* Uganda Flag Colors */
   --black: #000000;
   --yellow: #FCDC04;
   --red: #D90000;
+  
+  /* Weather Section */
+  --weather-bg: #f8f9fa;
+  --weather-border: #dee2e6;
+  --weather-text: #212529;
+  --icon-weather: url('images/weather-default.svg');
 }
 
-/* Mobile-First Layout */
+/* ===== WEATHER SECTION ===== */
+.weather {
+  background: var(--weather-bg);
+  border: 1px solid var(--weather-border);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 2rem 0;
+  color: var(--weather-text);
+}
+
+.weather-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+/* Mobile: SVG Icon */
+#dynamicWeatherIcon {
+  width: 40px;
+  height: 40px;
+  background: var(--icon-weather) no-repeat center / contain;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.weather-data {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.8rem;
+}
+
+.weather-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  border-bottom: 1px dashed var(--weather-border);
+}
+
+/* Desktop Layout */
+@media (min-width: 768px) {
+  .weather {
+    grid-column: 2;
+  }
+
+  .weather-data {
+    grid-template-columns: 1fr;
+  }
+
+  .weather h2::after {
+    content: "";
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background: currentColor;
+    -webkit-mask: var(--icon-weather) no-repeat center;
+    mask: var(--icon-weather) no-repeat center;
+    margin-left: 8px;
+    vertical-align: middle;
+    font-size: 1.2em;
+  }
+
+  #dynamicWeatherIcon {
+    display: none;
+  }
+}
+
+/* ===== GLOBAL STYLES ===== */
 body {
   font-family: 'Segoe UI', sans-serif;
   line-height: 1.6;
@@ -20,18 +96,14 @@ header {
   text-align: center;
 }
 
-.data, .weather {
-  margin: 2rem 0;
+footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: var(--black);
+  color: white;
 }
 
-.weather-icon {
-  width: 50px;
-  height: 50px;
-  background: url('../images/weather-icon.svg') no-repeat center;
-  margin: 0 auto;
-}
-
-/* Desktop Layout */
+/* For wider views */
 @media (min-width: 768px) {
   main {
     display: grid;
@@ -39,20 +111,11 @@ header {
     gap: 2rem;
   }
 
-  .weather h2::after {
-    content: "☀️";
-    margin-left: 10px;
+  .data {
+    grid-column: 1;
   }
-}
 
-/* Accessibility: Minimum AA Contrast */
-a, button {
-  color: var(--red);
-}
-
-footer {
-  text-align: center;
-  padding: 1rem;
-  background-color: var(--black);
-  color: white;
+  .weather {
+    grid-column: 2;
+  }
 }

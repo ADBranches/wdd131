@@ -42,18 +42,37 @@
         <li><strong>Capital:</strong> Kampala</li>
         <li><strong>Languages:</strong> English, Swahili</li>
         <li><strong>Currency:</strong> Ugandan Shilling</li>
+        <li><strong>Time Zone:</strong> UTC+3</li>
+        <li><strong>Calling Code:</strong> +256</li>
+        <li><strong>Internet TLD:</strong> .ug</li>
       </ul>
     </section>
 
-    <!-- Weather Section -->
-    <section class="weather" aria-label="Weather Conditions">
-      <h2>Weather</h2>
-      <div class="weather-icon"></div> 
-      <ul>
-        <li><strong>Temperature:</strong> 10°C</li>
-        <li><strong>Wind Speed:</strong> 5 km/h</li>
-        <li><strong>Wind Chill:</strong> <span id="windchill">N/A</span></li>
-      </ul>
+    <!-- weather section -->
+    <section class="weather" aria-label="Current Weather">
+      <div class="weather-header">
+        <h2>Weather</h2>
+        <div class="weather-icon" id="dynamicWeatherIcon"></div>
+      </div>
+      
+      <div class="weather-data">
+        <div class="weather-item">
+          <span>Temperature:</span>
+          <span id="weather-temp">--</span>
+        </div>
+        <div class="weather-item">
+          <span>Conditions:</span>
+          <span id="weather-cond">--</span>
+        </div>
+        <div class="weather-item">
+          <span>Wind Speed:</span>
+          <span id="weather-wind">--</span>
+        </div>
+        <div class="weather-item">
+          <span>Wind Chill:</span>
+          <span id="weather-chill">--</span>
+        </div>
+      </div>
     </section>
   </main>
 
