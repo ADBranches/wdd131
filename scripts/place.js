@@ -51,7 +51,7 @@ function renderWeather() {
 
 // ===== FOOTER ===== //
 document.querySelector("footer").innerHTML = `
-  ©${new Date().getFullYear()} Edwin Kambale | Uganda 
+  ©${new Date().getFullYear()} Edwin Kambale Uganda 
   Last Modified: ${document.lastModified}
 `;
 
