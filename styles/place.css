@@ -63,7 +63,7 @@
   }
 
   .weather h2::after {
-    content: "";
+    content: "⛅";
     display: inline-block;
     width: 24px;
     height: 24px;
