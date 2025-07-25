@@ -31,12 +31,9 @@
 
 /* Mobile: SVG Icon */
 #dynamicWeatherIcon {
+  background: url('images/weather-icon.svg') no-repeat center;
   width: 40px;
   height: 40px;
-  background: var(--icon-weather) no-repeat center / contain;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
 }
 
 .weather-data {
