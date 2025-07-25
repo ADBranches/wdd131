@@ -29,7 +29,6 @@
   margin-bottom: 1rem;
 }
 
-/* Mobile: SVG Icon */
 #dynamicWeatherIcon {
   background: url('images/weather-icon.svg') no-repeat center;
   width: 40px;
@@ -49,8 +48,17 @@
   border-bottom: 1px dashed var(--weather-border);
 }
 
-/* Desktop Layout */
 @media (min-width: 768px) {
+  main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .data {
+    grid-column: 1;
+  }
+
   .weather {
     grid-column: 2;
   }
@@ -60,15 +68,14 @@
   }
 
   .weather h2::after {
-    content: "⛅";
+    content: "";
     display: inline-block;
     width: 24px;
     height: 24px;
-    background: currentColor;
-    -webkit-mask: var(--icon-weather) no-repeat center;
+    background: var(--icon-weather) no-repeat center;
+    background-size: contain;
     margin-left: 8px;
     vertical-align: middle;
-    font-size: 1.2em;
   }
 
   #dynamicWeatherIcon {
@@ -78,7 +85,7 @@
 
 /* ===== GLOBAL STYLES ===== */
 body {
-  font-family: 'Segoe UI', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   line-height: 1.6;
   margin: 0;
   padding: 1rem;
@@ -97,21 +104,4 @@ footer {
   padding: 1rem;
   background-color: var(--black);
   color: white;
-}
-
-/* For wider views */
-@media (min-width: 768px) {
-  main {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-  }
-
-  .data {
-    grid-column: 1;
-  }
-
-  .weather {
-    grid-column: 2;
-  }
 }
