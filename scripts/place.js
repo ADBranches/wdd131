@@ -20,18 +20,21 @@ function calculateWindChill(temp, windSpeed) {
 // Updating Weather Display 
 function renderWeather() {
   const currentCondition = weatherData.condition;
+  const iconElement = document.getElementById("dynamicWeatherIcon");
   
-  document.getElementById("dynamicWeatherIcon").style.backgroundImage = 
-    `url('../images/weather-${currentCondition}.svg')`;
+  // Mobile: Update SVG icon
+  iconElement.className = `weather-icon ${currentCondition}`;
   
-  document.querySelector('.weather h2').dataset.icon = weatherIcons[currentCondition];
+  // Desktop: Update emoticon
+  const emoticons = { sunny: "☀️", cloudy: "⛅", rainy: "🌧️" };
+  document.querySelector('.weather h2').dataset.icon = emoticons[currentCondition];
   
-  // Updating weather data
+  // Update weather data
   document.getElementById("weather-temp").textContent = `${weatherData.temperature}°C`;
   document.getElementById("weather-cond").textContent = currentCondition;
   document.getElementById("weather-wind").textContent = `${weatherData.windSpeed} km/h`;
   document.getElementById("weather-chill").textContent = 
-    calculateWindChill(weatherData.temperature, weatherData.windSpeed);
+  	calculateWindChill(weatherData.temperature, weatherData.windSpeed);
 }
 
 // ===== FOOTER ===== //
