@@ -76,6 +76,7 @@
     background-size: contain;
     margin-left: 8px;
     vertical-align: middle;
+    content: attr(data-icon);
   }
 
   #dynamicWeatherIcon {
