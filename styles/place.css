@@ -4,6 +4,30 @@
   --yellow: #FCDC04;
   --red: #D90000;
   
+  /* ===== HERO IMAGE ===== */
+.hero-container {
+  width: 100%;
+  overflow: hidden;
+  margin: 0 auto;
+  text-align: center; 
+}
+
+.hero-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+  max-width: 100%;
+  object-fit: cover; 
+}
+
+/* For wider screens */
+@media (min-width: 768px) {
+  .hero-container img {
+    max-height: 400px; 
+    object-position: center 30%; 
+  }
+}
+
   /* Weather Section */
   --weather-bg: #f8f9fa;
   --weather-border: #dee2e6;
@@ -30,9 +54,10 @@
 }
 
 #dynamicWeatherIcon {
-  background: url('images/weather-icon.svg') no-repeat center;
+  background: url('images/weather-icon.svg') no-repeat center/contain;
   width: 40px;
   height: 40px;
+  display: block;
 }
 
 .weather-data {
@@ -68,7 +93,7 @@
   }
 
   .weather h2::after {
-    content: "";
+    content: "⛅";
     display: inline-block;
     width: 24px;
     height: 24px;
@@ -83,6 +108,9 @@
     display: none;
   }
 }
+.weather-icon.sunny { background-image: url('../images/weather-sunny.svg'); }
+.weather-icon.cloudy { background-image: url('../images/weather-cloudy.svg'); }
+.weather-icon.rainy { background-image: url('../images/weather-rainy.svg'); }
 
 /* ===== GLOBAL STYLES ===== */
 body {
@@ -106,3 +134,4 @@ footer {
   background-color: var(--black);
   color: white;
 }
+
