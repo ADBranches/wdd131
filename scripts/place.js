@@ -1,8 +1,8 @@
 // ===== WEATHER MODULE ===== //
 const weatherData = {
-  temperature: 8,      // Static value (replace with API later)
-  condition: "cloudy",  // "sunny", "rainy", or "cloudy"
-  windSpeed: 10,        // km/h
+  temperature: 8,      
+  condition: "cloudy", 
+  windSpeed: 10,       
 };
 
 // Icon Configuration
