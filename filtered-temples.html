@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Temple Album</title>
+  <meta name="description" content="Explore a collection of LDS temples with filtering options by age and size. View temple details including location, dedication date, and square footage.">
+  <meta name="author" content="Edwin Kambale">
+  <title>Filtered Temple Album | WDD 131 Project</title>
   <link rel="stylesheet" href="styles/filtered-temples.css">
   <link rel="stylesheet" href="styles/temples-large.css" media="(min-width: 768px)">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
@@ -11,7 +13,7 @@
 </head>
 <body>
     <header>
-        <h1>Temple Album</h1>
+        <h1>LDS Temple Gallery</h1>
         <button id="hamburger" aria-label="Menu">
           <img src="images/hamburger.svg" alt="Menu" class="menu-icon">
           <img src="images/close.svg" alt="Close Menu" class="close-icon" hidden>
@@ -19,10 +21,10 @@
         <nav>
           <ul>
             <li><a href="#" id="home">Home</a></li>
-            <li><a href="#" id="old">Old</a></li>
-            <li><a href="#" id="new">New</a></li>
-            <li><a href="#" id="large">Large</a></li>
-            <li><a href="#" id="small">Small</a></li>
+            <li><a href="#" id="old">Old (Pre-1900)</a></li>
+            <li><a href="#" id="new">New (Post-2000)</a></li>
+            <li><a href="#" id="large">Large (>90k sq ft)</a></li>
+            <li><a href="#" id="small">Small (<10k sq ft)</a></li>
           </ul>
         </nav>
     </header>
