@@ -1,120 +1,153 @@
 /* Base Styles */
 body {
-    font-family: 'Roboto', sans-serif;
-    margin: 0;
-    padding: 0;
-    line-height: 1.6;
-    color: #333;
-    background-color: #f9f9f9;
-  }
-  
-  header {
-    background-color: #2c3e50;
-    color: white;
-    padding: 1rem;
-    text-align: center;
-  }
-  
-  h1 {
-    font-family: 'Playfair Display', serif;
-    margin: 0;
-  }
-  
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  color: #333;
+  background-color: #f9f9f9;
+}
+
+header {
+  background-color: #2c3e50;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+}
+
+h1 {
+  font-family: 'Playfair Display', serif;
+  margin: 0;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  background-color: #34495e;
+  margin: 0;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem;
+  display: block;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+nav a:hover {
+  background-color: #1abc9c;
+}
+
+#hamburger {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Mobile Navigation */
+nav ul {
+  display: none;
+}
+
+nav ul.show {
+  display: flex;
+}
+
+/* Main Content */
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+/* Temple Card Styles */
+.temple-card {
+  margin: 0;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem;
+  background: white;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.temple-card:hover {
+  transform: translateY(-5px);
+}
+
+.temple-card img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
+.temple-card figcaption {
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: #2c3e50;
+}
+
+.temple-card p {
+  margin: 0.5rem 0;
+  color: #555;
+}
+
+/* Hamburger Menu Styles */
+.menu-icon {
+  display: block;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.close-icon { 
+  display: none;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+#hamburger:hover { 
+  opacity: 0.8; 
+}
+
+/* Footer Styles */
+footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: #2c3e50;
+  color: white;
+  margin-top: 2rem;
+}
+
+/* Responsive Layout */
+@media only screen and (min-width: 768px) {
   nav ul {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    background-color: #34495e;
-    margin: 0;
-  }
-  
-  nav a {
-    color: white;
-    text-decoration: none;
-    padding: 0.5rem;
-    display: block;
-  }
-  
-  nav a:hover {
-    background-color: #1abc9c;
-  }
-  
-  #hamburger {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 1.5rem;
-    cursor: pointer;
-    display: block;
-    margin: 0 auto;
-  }
-  
-  /* Hiding nav by default in mobile */
-  nav ul {
-    display: none;
-  }
-  
-  nav ul.show {
-    display: flex;
-  }
-  
-  main {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 1rem;
+      flex-direction: row;
+      justify-content: center;
   }
   
   .grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1rem;
+      grid-template-columns: repeat(2, 1fr);
   }
-  
-  figure {
-    margin: 0;
-    border: 1px solid #ddd;
-    padding: 1rem;
-    background: white;
-    text-align: center;
-  }
-  
-  img {
-    max-width: 100%;
-    height: auto;
-  }
-  
-  footer {
-    text-align: center;
-    padding: 1rem;
-    background-color: #2c3e50;
-    color: white;
-  }
-/* hamburger design*/
+}
 
-  #hamburger {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0.5rem;
-    display: block;
-    margin: 0 auto;
+@media only screen and (min-width: 1024px) {
+  .grid {
+      grid-template-columns: repeat(3, 1fr);
   }
-  
-  #hamburger img {
-    width: 1.5rem;
-    height: 1.5rem;
-    color: white;
-    transition: all 0.3s ease;
-  }
-  
-  #hamburger:hover img {
-    color: #1abc9c;
-  }
-
-  .menu-icon {
-    display: block;
-  }
-  .close-icon { display: none; }
-#hamburger:hover { opacity: 0.8; }
+}
