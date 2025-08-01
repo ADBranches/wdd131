@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Review Form</title>
+  <link rel="stylesheet" href="styles/form.css">
+</head>
+<body>
+  <form id="review-form" method="get" action="review.html">
+    <h1>Product Review</h1>
+
+    <!--  Dropdown -->
+    <label for="product-name">Product Name:</label>
+    <select id="product-name" name="product" required>
+      <option value="" disabled selected>Select a Product...</option>
+      <!-- Options populated by form.js -->
+    </select>
+
+    <!-- Overall Rating (Radio Buttons) -->
+    <fieldset>
+      <legend>Overall Rating:</legend>
+      <div class="rating">
+        <input type="radio" id="star1" name="rating" value="1" required>
+        <label for="star1">☆</label>
+        <input type="radio" id="star2" name="rating" value="2">
+        <label for="star2">☆</label>
+        <input type="radio" id="star3" name="rating" value="3">
+        <label for="star3">☆</label>
+        <input type="radio" id="star4" name="rating" value="4">
+        <label for="star4">☆</label>
+        <input type="radio" id="star5" name="rating" value="5">
+        <label for="star5">☆</label>
+      </div>
+    </fieldset>
+
+    <label for="install-date">Date of Installation:</label>
+    <input type="date" id="install-date" name="installDate" required>
+
+    <!-- Useful Features (Checkboxes) -->
+    <fieldset>
+      <legend>Useful Features:</legend>
+      <input type="checkbox" id="feature1" name="features" value="durable">
+      <label for="feature1">Durable</label>
+      <input type="checkbox" id="feature2" name="features" value="lightweight">
+      <label for="feature2">Lightweight</label>
+    </fieldset>
+
+    <label for="review">Written Review:</label>
+    <textarea id="review" name="review"></textarea>
+
+    <label for="username">Your Name (Optional):</label>
+    <input type="text" id="username" name="username">
+
+    <input type="submit" value="Submit Review">
+  </form>
+
+  <script src="scripts/form.js" defer></script>
+</body>
+</html>
