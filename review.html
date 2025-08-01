@@ -3,18 +3,49 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Thank You!</title>
+  <meta name="description" content="Product review submission confirmation">
+  <title>Thank You for Your Review!</title>
   <link rel="stylesheet" href="styles/form.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <h1>Thank You!</h1>
-  <p>Your review has been submitted successfully.</p>
-  <p id="counter">Total reviews submitted: <span>0</span></p>
+  <header>
+    <h1>Thank You!</h1>
+  </header>
+  
+  <main>
+    <section aria-labelledby="confirmation-heading">
+      <h2 id="confirmation-heading" class="visually-hidden">Review Submission Confirmation</h2>
+      <p>Your review has been submitted successfully.</p>
+      <p id="counter" aria-live="polite">Total reviews submitted: <span>0</span></p>
+    </section>
+    
+    <a href="form.html" class="button">Submit Another Review</a>
+  </main>
+
+  <footer>
+    <p>&copy; 2023 Product Reviews</p>
+  </footer>
 
   <script>
-    // localStorage counter
-    const count = localStorage.getItem("reviewCount") || 0;
-    document.querySelector("#counter span").textContent = count;
+    // localStorage counter with null check
+    document.addEventListener('DOMContentLoaded', () => {
+      const count = localStorage.getItem('reviewCount') || 0;
+      const counterElement = document.querySelector('#counter span');
+      
+      if (counterElement) {
+        counterElement.textContent = count;
+        
+        //  counter updates if page is revisited
+        window.addEventListener('storage', (e) => {
+          if (e.key === 'reviewCount') {
+            counterElement.textContent = e.newValue || 0;
+          }
+        });
+      }
+    });
   </script>
 </body>
 </html>
