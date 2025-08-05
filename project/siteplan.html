@@ -7,41 +7,8 @@
   <title>RealityMix - Site Plan</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Montserrat:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles/site_plan.css">  
-  <!-- Wireframe loader script -->
-  <script>
-    document.addEventListener('DOMContentLoaded', async () => {
-      try {
-        // Load and parse wireframes.md
-        const response = await fetch('wireframes.md');
-        if (!response.ok) throw new Error('Failed to load wireframes');
-        const mdContent = await response.text();
-        
-        // Simple Markdown to HTML conversion (basic patterns only)
-        const htmlContent = mdContent
-          .replace(/^### (.*$)/gm, '<h3>$1</h3>')
-          .replace(/^#### (.*$)/gm, '<h4>$1</h4>')
-          .replace(/```mermaid([\s\S]*?)```/g, '<div class="mermaid">$1</div>')
-          .replace(/^- (.*$)/gm, '<li>$1</li>')
-          .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-        
-        // Inject into DOM
-        document.getElementById('wireframes-content').innerHTML = htmlContent;
-        
-        // Initialize Mermaid after content loads
-        mermaid.initialize({ 
-          startOnLoad: true,
-          theme: 'dark',
-          flowchart: { useMaxWidth: false }
-        });
-      } catch (error) {
-        console.error('Error loading wireframes:', error);
-        document.getElementById('wireframes-content').innerHTML = 
-          '<p>Error loading wireframes. Please check console.</p>';
-      }
-    });
-  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/site_plan.css">
 </head>
 <body>
   <header>
@@ -123,14 +90,48 @@
 
     <section id="wireframes">
       <h2>Wireframes</h2>
-      <div id="wireframes-content">
-        <!-- Content will be dynamically loaded from wireframes.md -->
-        <p>Loading wireframe diagrams...</p>
-      </div>
+      
+      <article class="wireframe">
+        <h3>Mobile View</h3>
+        <img src="images/mermaid_mobile.png" alt="Mobile wireframe showing hamburger menu, AR preview area, and vertical content stack">
+        <div class="wireframe-description">
+          <h4>Key Features:</h4>
+          <ul>
+            <li><strong>Top Bar:</strong> Hamburger menu + RealityMix logo</li>
+            <li><strong>Hero Section:</strong> Full-width AR demo button</li>
+            <li><strong>Content:</strong> Vertically stacked AR preview and controls</li>
+            <li><strong>Footer:</strong> Simplified navigation</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="wireframe">
+        <h3>Desktop View</h3>
+        <img src="images/mermaid_desktop.png" alt="Desktop wireframe showing three-column layout with AR workspace">
+        <div class="wireframe-description">
+          <h4>Key Features:</h4>
+          <ul>
+            <li><strong>Header:</strong> Full navigation bar with user profile</li>
+            <li><strong>Main Workspace:</strong> Three-column layout (controls, preview, assets)</li>
+            <li><strong>AR Preview:</strong> Central 50% width viewport</li>
+            <li><strong>Tools:</strong> Persistent left panel with sliders</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="wireframe">
+        <h3>Layout Distribution</h3>
+        <img src="images/mermaid_Three-Column_Layout.png" alt="Pie chart showing desktop screen allocation">
+        <div class="wireframe-description">
+          <h4>Screen Real Estate:</h4>
+          <ul>
+            <li><strong>25% Left:</strong> AR controls and presets</li>
+            <li><strong>50% Center:</strong> Primary AR workspace</li>
+            <li><strong>25% Right:</strong> Object library</li>
+          </ul>
+        </div>
+      </article>
     </section>
   </main>
-
-  <!-- Mermaid JS for diagram rendering -->
-  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
 </body>
 </html>
