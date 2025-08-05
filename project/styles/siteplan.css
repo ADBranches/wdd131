@@ -1,0 +1,184 @@
+/* ===== Base Styles ===== */
+:root {
+    --primary: #6E44FF;
+    --primary-light: #9D7AFF;
+    --primary-dark: #4B2BB2;
+    --secondary: #0A0F2B;
+    --secondary-light: #1A2142;
+    --accent: #00FFD1;
+    --accent-dark: #00CCAA;
+    --text-light: #FFFFFF;
+    --text-gray: #CCCCCC;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* ===== Typography ===== */
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@400;700&display=swap');
+  
+  body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    color: var(--text-light);
+    background-color: var(--secondary);
+    margin: 0;
+    padding: 0;
+  }
+  
+  h1, h2, h3, h4 {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--primary);
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+    text-shadow: 0 0 10px rgba(110, 68, 255, 0.3);
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 0.3em;
+  }
+  
+  h2 {
+    font-size: 2rem;
+    border-left: 4px solid var(--accent);
+    padding-left: 0.5em;
+  }
+  
+  h3 {
+    font-size: 1.5rem;
+    color: var(--accent);
+  }
+  
+  a {
+    color: var(--accent);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  
+  a:hover {
+    color: var(--accent-dark);
+  }
+  
+  /* ===== Layout ===== */
+  header {
+    background-color: var(--secondary-light);
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: var(--shadow);
+  }
+  
+  main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  
+  section {
+    background-color: var(--secondary-light);
+    border-radius: 8px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: var(--shadow);
+  }
+  
+  /* ===== Tables ===== */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    background-color: var(--secondary);
+  }
+  
+  th {
+    background-color: var(--primary-dark);
+    color: white;
+    padding: 1rem;
+    text-align: left;
+  }
+  
+  td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--secondary-light);
+    vertical-align: middle;
+  }
+  
+  tr:nth-child(even) {
+    background-color: rgba(110, 68, 255, 0.05);
+  }
+  
+  /* ===== Lists ===== */
+  ul, ol {
+    padding-left: 1.5rem;
+  }
+  
+  li {
+    margin-bottom: 0.5rem;
+  }
+  
+  /* ===== Wireframes Section ===== */
+  #wireframes-content {
+    background-color: var(--secondary);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--primary-dark);
+  }
+  
+  .mermaid {
+    background-color: var(--secondary);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin: 1.5rem 0;
+    overflow: auto;
+  }
+  
+  /* ===== Swatches ===== */
+  .color-swatch {
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    border-radius: 8px;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: var(--shadow);
+    vertical-align: middle;
+    text-align: center;
+    line-height: 100px;
+    font-weight: bold;
+    color: white;
+  }
+  
+  /* ===== Responsive Design ===== */
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 2rem;
+    }
+    
+    h2 {
+      font-size: 1.5rem;
+    }
+    
+    section {
+      padding: 1.5rem;
+    }
+    
+    table {
+      display: block;
+      overflow-x: auto;
+    }
+  }
+  
+  /* ===== Animations ===== */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  section {
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+  
+  section:nth-child(2) { animation-delay: 0.1s; }
+  section:nth-child(3) { animation-delay: 0.2s; }
+  section:nth-child(4) { animation-delay: 0.3s; }
+  section:nth-child(5) { animation-delay: 0.4s; }
+  section:nth-child(6) { animation-delay: 0.5s; }
