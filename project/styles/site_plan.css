@@ -1,207 +1,249 @@
-/* ===== Base Styles ===== */
+/* ===== CSS Variables ===== */
 :root {
-    --primary: #6E44FF;
-    --primary-light: #9D7AFF;
-    --primary-dark: #4B2BB2;
-    --secondary: #0A0F2B;
-    --secondary-light: #1A2142;
-    --accent: #00FFD1;
-    --accent-dark: #00CCAA;
-    --text-light: #FFFFFF;
-    --text-gray: #CCCCCC;
-    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
+  /* Color Palette */
+  --primary: #6E44FF;
+  --primary-light: #9D7AFF;
+  --primary-dark: #4B2BB2;
+  --secondary: #0A0F2B;
+  --secondary-light: #1A2142;
+  --accent: #00FFD1;
+  --accent-dark: #00CCAA;
   
-  /* ===== Typography ===== */
-  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@400;700&display=swap');
+  /* Typography */
+  --text-light: #FFFFFF;
+  --text-gray: #CCCCCC;
   
-  body {
-    font-family: 'Roboto', sans-serif;
-    line-height: 1.6;
-    color: var(--text-light);
-    background-color: var(--secondary);
-    margin: 0;
-    padding: 0;
-  }
+  /* Effects */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.2);
+  --glow-primary: 0 0 10px rgba(110, 68, 255, 0.3);
   
-  h1, h2, h3, h4 {
-    font-family: 'Orbitron', sans-serif;
-    color: var(--primary);
-    margin-top: 1.5em;
-    margin-bottom: 0.5em;
-  }
+  /* Spacing */
+  --space-sm: 1rem;
+  --space-md: 2rem;
+  --space-lg: 3rem;
   
-  h1 {
-    font-size: 2.5rem;
-    text-shadow: 0 0 10px rgba(110, 68, 255, 0.3);
-    border-bottom: 2px solid var(--accent);
-    padding-bottom: 0.3em;
-  }
+  /* Borders */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+}
+
+/* ===== Base Reset ===== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ===== Typography ===== */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@400;700&display=swap');
+
+body {
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.6;
+  color: var(--text-light);
+  background-color: var(--secondary);
+  padding: 0;
+  margin: 0;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Orbitron', sans-serif;
+  color: var(--primary);
+  margin: var(--space-sm) 0;
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: clamp(2rem, 5vw, 2.5rem);
+  text-shadow: var(--glow-primary);
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 0.5rem;
+}
+
+h2 {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  border-left: 4px solid var(--accent);
+  padding-left: var(--space-sm);
+}
+
+h3 {
+  font-size: clamp(1.25rem, 3vw, 1.5rem);
+  color: var(--accent);
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color 0.3s ease;
   
-  h2 {
-    font-size: 2rem;
-    border-left: 4px solid var(--accent);
-    padding-left: 0.5em;
-  }
-  
-  h3 {
-    font-size: 1.5rem;
-    color: var(--accent);
-  }
-  
-  a {
-    color: var(--accent);
-    text-decoration: none;
-    transition: color 0.3s;
-  }
-  
-  a:hover {
+  &:hover {
     color: var(--accent-dark);
   }
-  
-  /* ===== Layout ===== */
-  header {
-    background-color: var(--secondary-light);
-    padding: 2rem;
-    margin-bottom: 2rem;
-    box-shadow: var(--shadow);
-  }
-  
-  main {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
-  }
-  
-  section {
-    background-color: var(--secondary-light);
-    border-radius: 8px;
-    padding: 2rem;
-    margin-bottom: 2rem;
-    box-shadow: var(--shadow);
-  }
-  
-  /* ===== Tables ===== */
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 1.5rem 0;
-    background-color: var(--secondary);
-  }
-  
-  th {
-    background-color: var(--primary-dark);
-    color: white;
-    padding: 1rem;
-    text-align: left;
-  }
-  
-  td {
-    padding: 1rem;
-    border-bottom: 1px solid var(--secondary-light);
-    vertical-align: middle;
-  }
-  
-  tr:nth-child(even) {
-    background-color: rgba(110, 68, 255, 0.05);
-  }
-  
-  /* ===== Lists ===== */
-  ul, ol {
-    padding-left: 1.5rem;
-  }
-  
-  li {
-    margin-bottom: 0.5rem;
-  }
-  
-  /* ===== Wireframes Section ===== */
-  #wireframes-content {
-    background-color: var(--secondary);
-    padding: 1.5rem;
-    border-radius: 8px;
-    border: 1px solid var(--primary-dark);
-  }
-  
-  .mermaid {
-    background-color: var(--secondary);
-    padding: 1.5rem;
-    border-radius: 8px;
-    margin: 1.5rem 0;
-    overflow: auto;
-  }
-  
-  /* ===== Swatches ===== */
-  .color-swatch {
-    display: inline-block;
-    width: 100px;
-    height: 100px;
-    border-radius: 8px;
-    margin-right: 1rem;
-    margin-bottom: 1rem;
-    box-shadow: var(--shadow);
-    vertical-align: middle;
-    text-align: center;
-    line-height: 100px;
-    font-weight: bold;
-    color: white;
-  }
+}
 
+/* ===== Layout ===== */
+header {
+  background-color: var(--secondary-light);
+  padding: var(--space-md);
+  margin-bottom: var(--space-md);
+  box-shadow: var(--shadow-md);
+}
 
-  /* Wireframe Styling */
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+}
+
+section {
+  background-color: var(--secondary-light);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  margin-bottom: var(--space-md);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ===== Data Display ===== */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: var(--space-md) 0;
+  background-color: var(--secondary);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+th {
+  background-color: var(--primary-dark);
+  color: var(--text-light);
+  padding: var(--space-sm);
+  text-align: left;
+}
+
+td {
+  padding: var(--space-sm);
+  border-bottom: 1px solid var(--secondary-light);
+}
+
+tr:nth-child(even) {
+  background-color: rgba(110, 68, 255, 0.05);
+}
+
+/* ===== Wireframe Components ===== */
 .wireframe {
   background: var(--secondary-light);
-  padding: 1.5rem;
-  margin-bottom: 2rem;
-  border-radius: 8px;
-}
-
-.wireframe img {
-  width: 100%;
-  max-width: 800px;
-  border: 1px solid var(--accent);
-  margin: 1rem 0;
-}
-
-.wireframe-description {
-  padding: 1rem;
-  background: rgba(0,0,0,0.2);
-  border-radius: 4px;
-}
-
+  padding: var(--space-md);
+  margin-bottom: var(--space-md);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--primary-dark);
   
-  /* ===== Responsive Design ===== */
-  @media (max-width: 768px) {
-    h1 {
-      font-size: 2rem;
-    }
+  &-image {
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    border: 1px solid var(--accent);
+    border-radius: var(--radius-sm);
+    margin: var(--space-sm) 0;
+    box-shadow: var(--shadow-md);
+    transition: transform 0.3s ease;
     
-    h2 {
-      font-size: 1.5rem;
-    }
-    
-    section {
-      padding: 1.5rem;
-    }
-    
-    table {
-      display: block;
-      overflow-x: auto;
+    &:hover {
+      transform: translateY(-5px);
     }
   }
   
-  /* ===== Animations ===== */
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+  &-description {
+    padding: var(--space-sm);
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: var(--radius-sm);
+    margin-top: var(--space-sm);
+    
+    ul {
+      padding-left: var(--space-md);
+    }
+    
+    li {
+      margin-bottom: 0.75rem;
+      position: relative;
+      
+      &::before {
+        content: "→";
+        color: var(--accent);
+        position: absolute;
+        left: -1.25rem;
+      }
+    }
+  }
+}
+
+.color-swatch {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+  border-radius: var(--radius-sm);
+  margin-right: var(--space-sm);
+  margin-bottom: var(--space-sm);
+  box-shadow: var(--shadow-sm);
+  vertical-align: middle;
+  position: relative;
+  
+  &::after {
+    content: attr(data-color);
+    position: absolute;
+    bottom: -1.5rem;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--text-gray);
+  }
+}
+
+/* ===== Animations ===== */
+@keyframes fadeIn {
+  from { 
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+section {
+  animation: fadeIn 0.5s ease-out forwards;
+  
+  &:nth-child(2) { animation-delay: 0.1s; }
+  &:nth-child(3) { animation-delay: 0.2s; }
+  &:nth-child(4) { animation-delay: 0.3s; }
+  &:nth-child(5) { animation-delay: 0.4s; }
+  &:nth-child(6) { animation-delay: 0.5s; }
+}
+
+/* ===== Responsive Design ===== */
+@media (max-width: 768px) {
+  :root {
+    --space-md: 1.5rem;
   }
   
-  section {
-    animation: fadeIn 0.5s ease-out forwards;
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
   }
   
-  section:nth-child(2) { animation-delay: 0.1s; }
-  section:nth-child(3) { animation-delay: 0.2s; }
-  section:nth-child(4) { animation-delay: 0.3s; }
-  section:nth-child(5) { animation-delay: 0.4s; }
-  section:nth-child(6) { animation-delay: 0.5s; }
+  .wireframe {
+    padding: var(--space-sm);
+    
+    &-description {
+      padding: 0.75rem;
+      
+      li {
+        margin-bottom: 0.5rem;
+      }
+    }
+  }
+}
