@@ -146,6 +146,29 @@
     font-weight: bold;
     color: white;
   }
+
+
+  /* Wireframe Styling */
+.wireframe {
+  background: var(--secondary-light);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  border-radius: 8px;
+}
+
+.wireframe img {
+  width: 100%;
+  max-width: 800px;
+  border: 1px solid var(--accent);
+  margin: 1rem 0;
+}
+
+.wireframe-description {
+  padding: 1rem;
+  background: rgba(0,0,0,0.2);
+  border-radius: 4px;
+}
+
   
   /* ===== Responsive Design ===== */
   @media (max-width: 768px) {
