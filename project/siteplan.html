@@ -3,47 +3,132 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <meta name="description" content="RealityMix Site Plan">
+  <meta name="description" content="RealityMix Site Plan - AR Experience Platform">
   <title>RealityMix - Site Plan</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --primary: #6E44FF;
-      --secondary: #0A0F2B;
-      --accent: #00FFD1;
-    }
-    body { font-family: 'Roboto', sans-serif; background: var(--secondary); color: white; }
-    h1, h2 { font-family: 'Orbitron', sans-serif; color: var(--primary); }
-    .accent { color: var(--accent); }
-  </style>
+  <!-- CSS will be linked later in styles/site_plan.css -->
+  
+  <!-- Wireframe loader script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      try {
+        // Load and parse wireframes.md
+        const response = await fetch('wireframes.md');
+        if (!response.ok) throw new Error('Failed to load wireframes');
+        const mdContent = await response.text();
+        
+        // Simple Markdown to HTML conversion (basic patterns only)
+        const htmlContent = mdContent
+          .replace(/^### (.*$)/gm, '<h3>$1</h3>')
+          .replace(/^#### (.*$)/gm, '<h4>$1</h4>')
+          .replace(/```mermaid([\s\S]*?)```/g, '<div class="mermaid">$1</div>')
+          .replace(/^- (.*$)/gm, '<li>$1</li>')
+          .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+        
+        // Inject into DOM
+        document.getElementById('wireframes-content').innerHTML = htmlContent;
+        
+        // Initialize Mermaid after content loads
+        mermaid.initialize({ 
+          startOnLoad: true,
+          theme: 'dark',
+          flowchart: { useMaxWidth: false }
+        });
+      } catch (error) {
+        console.error('Error loading wireframes:', error);
+        document.getElementById('wireframes-content').innerHTML = 
+          '<p>Error loading wireframes. Please check console.</p>';
+      }
+    });
+  </script>
 </head>
 <body>
-  <h1>RealityMix Site Plan</h1>
-  <section>
-    <h2>Site Name</h2>
-    <p><span class="accent">RealityMix</span> - Blending digital and physical worlds.</p>
-  </section>
-  <!-- Mobile Wireframe Description -->
-  <div class="wireframe">
-    <h3>Mobile View</h3>
-    <ul>
-      <li><strong>Header:</strong> Collapsible menu (☰) + logo</li>
-      <li><strong>AR Demo:</strong> File upload → Preview (vertical stack)</li>
-      <li><strong>Quiz:</strong> Full-width cards with radio buttons</li>
-    </ul>
-  </div>
+  <header>
+    <h1>RealityMix Site Plan</h1>
+  </header>
 
-  <!-- Desktop Wireframe Description -->
-  <div class="wireframe">
-    <h3>Desktop View</h3>
-    <ul>
-      <li><strong>Header:</strong> Logo + inline navigation</li>
-      <li><strong>Main:</strong> 2-column grid (controls | preview)</li>
-      <li><strong>Sidebar:</strong> Fixed quiz widget</li>
-    </ul>
-  </div>
+  <main>
+    <section id="site-name">
+      <h2>Site Name</h2>
+      <p><strong>RealityMix</strong> - Blending digital and physical worlds through augmented reality.</p>
+      <p>This name represents our platform that merges AR technology with real-world applications.</p>
+    </section>
 
-  <!--  other sections (Purpose, Scenarios, etc.) -->
+    <section id="purpose">
+      <h2>Site Purpose</h2>
+      <ul>
+        <li>Showcase AR technology demonstrations</li>
+        <li>Provide interactive AR experience builder tools</li>
+        <li>Offer educational resources about mixed reality</li>
+        <li>Host community discussions for AR developers</li>
+      </ul>
+    </section>
+
+    <section id="scenarios">
+      <h2>Scenarios</h2>
+      <ol>
+        <li>How can I preview AR furniture in my actual living space?</li>
+        <li>What hardware requirements do I need to run these AR experiences?</li>
+        <li>Where can I learn to create my own AR content?</li>
+      </ol>
+    </section>
+
+    <section id="colors">
+      <h2>Color Schema</h2>
+      <table>
+        <tr>
+          <th>Swatch</th>
+          <th>Hex Code</th>
+          <th>Usage</th>
+        </tr>
+        <tr>
+          <td style="background-color: #6E44FF; width: 50px; height: 30px;"></td>
+          <td>#6E44FF</td>
+          <td>Primary brand color (headings, CTAs)</td>
+        </tr>
+        <tr>
+          <td style="background-color: #0A0F2B; width: 50px; height: 30px;"></td>
+          <td>#0A0F2B</td>
+          <td>Background/dark surfaces</td>
+        </tr>
+        <tr>
+          <td style="background-color: #00FFD1; width: 50px; height: 30px;"></td>
+          <td>#00FFD1</td>
+          <td>Interactive elements, accents</td>
+        </tr>
+      </table>
+    </section>
+
+    <section id="typography">
+      <h2>Typography</h2>
+      <table>
+        <tr>
+          <th>Font</th>
+          <th>Type</th>
+          <th>Usage</th>
+        </tr>
+        <tr>
+          <td>Orbitron</td>
+          <td>Display Sans</td>
+          <td>Headings (h1-h6), navigation</td>
+        </tr>
+        <tr>
+          <td>Roboto</td>
+          <td>Neo-Grotesque</td>
+          <td>Body text, paragraphs</td>
+        </tr>
+      </table>
+    </section>
+
+    <section id="wireframes">
+      <h2>Wireframes</h2>
+      <div id="wireframes-content">
+        <!-- Content will be dynamically loaded from wireframes.md -->
+        <p>Loading wireframe diagrams...</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Mermaid JS for diagram rendering -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
 </body>
 </html>
