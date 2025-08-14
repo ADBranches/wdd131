@@ -1,0 +1,30 @@
+@import './base/_variables.css';
+
+[data-ar-viewport] {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: var(--z-index-ar);
+  background: var(--ar-background);
+  overflow: hidden;
+}
+
+/* AR-specific UI elements */
+.ar-overlay {
+  position: absolute;
+  top: var(--spacing-unit);
+  left: var(--spacing-unit);
+  z-index: calc(var(--z-index-ar) + 1);
+}
+
+.ar-overlay button {
+  background: rgba(0, 0, 0, 0.7);
+  color: var(--ar-text);
+  border: 1px solid var(--ar-primary);
+}
+
+.ar-overlay button:hover {
+  background: var(--ar-primary);
+}

@@ -1,0 +1,35 @@
+@import './base/_reset.css';
+@import './base/_variables.css';
+
+body {
+  font-family: var(--font-base);
+  font-size: var(--font-size-base);
+  background: var(--ar-background);
+  color: var(--ar-text);
+  line-height: 1.5;
+}
+
+button, [role="button"] {
+  padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 2);
+  border-radius: 4px;
+  background: var(--ar-primary);
+  color: var(--ar-text);
+  font-size: var(--font-size-base);
+  transition: background var(--transition-fast), transform var(--transition-fast);
+}
+
+button:hover, [role="button"]:hover {
+  background: var(--ar-secondary);
+  transform: translateY(-2px);
+}
+
+button:active, [role="button"]:active {
+  transform: translateY(0);
+}
+
+/* General layout */
+.container {
+  padding: calc(var(--spacing-unit) * 2);
+  max-width: 1200px;
+  margin: 0 auto;
+}
