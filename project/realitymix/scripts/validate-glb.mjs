@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import pkg from 'gltf-validator'; // Use default import
-const { validateBytes } = pkg; // Destructure validateBytes
+import pkg from 'gltf-validator';
+const { validateBytes } = pkg;
 
 /**
  * Validate a single GLB/GLTF file
@@ -11,6 +11,9 @@ const { validateBytes } = pkg; // Destructure validateBytes
 async function validateFile(filePath) {
   try {
     const buffer = await fs.readFile(filePath);
+    if (buffer.length < 12) { // Minimum GLB header size
+      throw new Error('File is empty or too small');
+    }
     const report = await validateBytes(new Uint8Array(buffer));
     console.log(`✅ ${filePath}`);
     if (report.issues.numErrors > 0) {
@@ -19,7 +22,7 @@ async function validateFile(filePath) {
       console.log('No errors.');
     }
   } catch (err) {
-    console.error(`❌ ${filePath} validation failed:`, err.message);
+    console.error(`❌ ${filePath} validation failed: ${err.message}`);
     process.exitCode = 1;
   }
 }

@@ -16,10 +16,14 @@ export async function initARTool() {
     });
 
     // Initialize marker tracking
-    const { default: initMarkerTracking } = await loadARModule('marker-tracking');
+    const module = await loadARModule('marker-tracking');
+    if (!module || !module.default) {
+      throw new Error('Failed to load marker-tracking module');
+    }
+    const { default: initMarkerTracking } = module;
     const marker = await initMarkerTracking(scene, {
       marker: 'hiro',
-      modelPath: 'test-chair.glb',
+      modelPath: 'furniture/chair.glb', // Use validated model
       modelOptions: { scale: 0.5 }
     });
 
@@ -33,7 +37,7 @@ export async function initARTool() {
         marker.remove();
         initMarkerTracking(scene, {
           marker: 'hiro',
-          modelPath: 'test-chair.glb',
+          modelPath: 'furniture/chair.glb',
           modelOptions: { scale: 0.5 }
         });
       },

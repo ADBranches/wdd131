@@ -18,22 +18,18 @@ export async function initScene(options = {}) {
     // Create A-Frame scene
     const scene = document.createElement('a-scene');
     scene.setAttribute('embedded', '');
-    scene.setAttribute('arjs', `sourceType: ${sourceType}; trackingMethod: ${trackingMethod}; debugUIEnabled: ${debug}`);
     scene.setAttribute('vr-mode-ui', 'enabled: false');
     scene.setAttribute('renderer', 'antialias: true; alpha: true');
+
+    // Set AR.js attributes as a single string
+    const arjsConfig = `sourceType: ${sourceType}; trackingMethod: ${trackingMethod}; debugUIEnabled: ${debug}; patternRatio: 0.5; cameraParametersUrl: /data/camera_para.dat; detectionMode: mono`;
+    scene.setAttribute('arjs', arjsConfig);
 
     // Add camera
     const camera = document.createElement('a-camera');
     camera.setAttribute('gps-camera', '');
     camera.setAttribute('look-controls', 'enabled: false');
     scene.appendChild(camera);
-
-    // AR.js configuration
-    scene.setAttribute('arjs', {
-      cameraParametersUrl: '/data/camera_para.dat',
-      detectionMode: 'mono',
-      patternRatio: 0.5
-    });
 
     // Append scene to DOM
     const arRoot = document.querySelector('#ar-root');
@@ -42,8 +38,8 @@ export async function initScene(options = {}) {
 
     // Wait for scene to load
     await new Promise((resolve, reject) => {
-      scene.addEventListener('loaded', resolve);
-      scene.addEventListener('error', () => reject(new Error('Scene failed to load')));
+      scene.addEventListener('loaded', resolve, { once: true });
+      scene.addEventListener('error', () => reject(new Error('Scene failed to load')), { once: true });
       setTimeout(() => reject(new Error('Scene load timeout')), 10000);
     });
 

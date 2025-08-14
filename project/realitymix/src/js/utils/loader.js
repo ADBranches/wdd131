@@ -1,25 +1,17 @@
 /**
- * Dynamically load AR feature modules
- * @param {string} name - Module name (e.g., 'marker-tracking')
- * @returns {Promise<Object|null>} Loaded module or null on failure
+ * Load AR module dynamically
+ * @param {string} moduleName - Module name
+ * @returns {Promise<Object>} Module
  */
-export async function loadARModule(name) {
+export async function loadARModule(moduleName) {
   try {
-    const module = await import(`../ar/features/${name}.js`);
-    console.log(`Loaded AR module: ${name}`);
+    const module = await import(`../ar/features/${moduleName}.js`);
+    if (!module.default) {
+      throw new Error(`No default export in ${moduleName}.js`);
+    }
     return module;
   } catch (err) {
-    console.error(`Failed to load AR module "${name}":`, err);
-    return null;
+    console.error(`Failed to load AR module "${moduleName}": ${err.message}`);
+    throw new Error(`Unknown variable dynamic import: ../ar/features/${moduleName}.js`);
   }
-}
-
-/**
- * Check if a feature module is supported
- * @param {string} name - Module name
- * @returns {Promise<boolean>}
- */
-export async function isFeatureSupported(name) {
-  const module = await loadARModule(name);
-  return !!(module && module.isSupported && (await module.isSupported()));
 }
