@@ -1,8 +1,11 @@
 import { initARTool } from '../pages/ar-tool/index.js';
-import { ARTracker } from './performance.js';
+import { ARTracker } from './performance.js';  // If you use ARTracker
+import '@ar-js-org/ar.js/aframe/build/aframe-ar-nft.js'; // or your chosen AR.js build
 
 (async () => {
   try {
+    console.log('Loading AR Tool...');
+
     const { scene, marker, controls } = await initARTool();
 
     if (!scene || !marker || !controls) {
@@ -11,13 +14,11 @@ import { ARTracker } from './performance.js';
 
     console.log('AR Tool initialized:', { scene, marker, controls });
 
-    // Log performance if available
-    if (ARTracker && typeof ARTracker.logPerformance === 'function') {
+    if (ARTracker?.logPerformance) {
       ARTracker.logPerformance();
     }
-
   } catch (err) {
     console.error('Initialization failed:', err);
-    // Optional: add UI fallback or user notification here
+    // Optional: show modal or retry UI here
   }
 })();

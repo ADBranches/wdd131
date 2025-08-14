@@ -44,14 +44,14 @@ export async function initScene(options = {}) {
         assetItem.setAttribute('id', model.id);
         assetItem.setAttribute('src', model.src);
 
-        assetItem.addEventListener('error', (evt) => {
-          console.error(`Error loading asset: ${model.src}`, evt);
-          // Optionally emit 'loaded' to prevent scene load hang
+        assetItem.addEventListener('error', evt => {
+          console.error(`Asset load error for: ${model.src}`, evt);
+          // Emit loaded anyway so scene doesn't hang indefinitely
           assetItem.emit('loaded');
         });
 
         assetItem.addEventListener('loaded', () => {
-          console.log(`Asset loaded successfully: ${model.src}`);
+          console.log(`Asset loaded: ${model.src}`);
         });
 
         assets.appendChild(assetItem);
@@ -84,7 +84,7 @@ export async function initScene(options = {}) {
     await new Promise((resolve, reject) => {
       scene.addEventListener('loaded', resolve, { once: true });
       scene.addEventListener('error', () => reject(new Error('Scene failed to load')), { once: true });
-      setTimeout(() => reject(new Error('Scene load timeout')), 20000); // 20 seconds timeout
+      setTimeout(() => reject(new Error('Scene load timeout')), 60000); 
     });
 
     console.log('AR Scene initialized successfully.');
