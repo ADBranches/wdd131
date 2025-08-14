@@ -1,49 +1,41 @@
-import * as THREE from 'three';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
-
 /**
- * Load a GLB model as an A-Frame entity
- * @param {string} path - Relative path under /assets/models/
+ * Create an A-Frame entity referencing a preloaded GLB model by asset ID
+ * @param {string} assetId - The id attribute of the <a-asset-item> (without '#')
  * @param {Object} options - Model customization options
  * @param {number} options.scale - Uniform scale factor
  * @param {Object} options.position - {x, y, z} position
  * @param {Object} options.rotation - {x, y, z} rotation in degrees (optional)
- * @returns {Promise<Element>} A-Frame entity
+ * @returns {Element} A-Frame entity referencing preloaded asset
  */
-async function loadModel(path, options = {}) {
+function loadModel(assetId, options = {}) {
   const {
     scale = 1,
     position = { x: 0, y: 0, z: 0 },
-    rotation = { x: 0, y: 0, z: 0 } 
+    rotation = { x: 0, y: 0, z: 0 },
   } = options;
 
-  try {
-    const loader = new GLTFLoader();
-    const gltf = await loader.loadAsync(`/assets/models/${path}`);
+  // Create entity referencing the preloaded model by id
+  const model = document.createElement('a-entity');
 
-    if (!gltf.scene) {
-      throw new Error(`Invalid GLB file: ${path}`);
-    }
+  model.setAttribute('gltf-model', `#${assetId}`);
+  model.setAttribute('scale', `${scale} ${scale} ${scale}`);
+  model.setAttribute('position', `${position.x} ${position.y} ${position.z}`);
+  model.setAttribute('rotation', `${rotation.x} ${rotation.y} ${rotation.z}`);
 
-    const model = document.createElement('a-entity');
-    
-    // Attach the loaded 3D scene as the mesh object
-    model.setObject3D('mesh', gltf.scene);
-    
-    // Set transform attributes for A-Frame
-    model.setAttribute('scale', `${scale} ${scale} ${scale}`);
-    model.setAttribute('position', `${position.x} ${position.y} ${position.z}`);
-    model.setAttribute('rotation', `${rotation.x} ${rotation.y} ${rotation.z}`);
-
-    return model;
-  } catch (err) {
-    throw new Error(`Failed to load model ${path}: ${err.message}`);
-  }
+  return model;
 }
 
-export async function safeLoadModel(path, options = {}) {
+
+/**
+ * Wrap loadModel to simulate async for API compatibility
+ * @param {string} assetId
+ * @param {Object} options
+ * @returns {Promise<Element>}
+ */
+export async function safeLoadModel(assetId, options = {}) {
   try {
-    return await loadModel(path, options);
+    const model = loadModel(assetId, options);
+    return model;
   } catch (err) {
     console.error(err);
     return null;

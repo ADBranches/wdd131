@@ -2,12 +2,13 @@ import * as THREE from 'three';
 import { Modal } from '../../ui/modal.js';
 
 /**
- * Initialize A-Frame AR scene
+ * Initialize A-Frame AR scene with dynamic assets preloading
  * @param {Object} options - Scene options
  * @param {string} options.trackingMethod - AR.js tracking method, e.g., 'best', 'barcode', 'color', etc.
  * @param {string} options.sourceType - Source type for AR.js ('webcam', 'video', 'image')
  * @param {boolean} options.debug - Enable AR.js debug UI
  * @param {boolean} options.useGpsCamera - Whether to add gps-camera component
+ * @param {Array<Object>} options.models - Array of models to preload of shape { id: string, src: string }
  * @returns {Promise<Element>} A-Frame scene element
  */
 export async function initScene(options = {}) {
@@ -16,13 +17,13 @@ export async function initScene(options = {}) {
     sourceType = 'webcam',
     debug = false,
     useGpsCamera = false,
+    models = [],  // New: accepts list of models { id, src }
   } = options;
 
   try {
-    // WebXR check optional - AR.js may not require it strictly
     if (!navigator.xr) {
       console.warn('WebXR not supported; proceeding with AR.js fallback');
-      // Optionally you could choose to throw here or not; removing throw for wider support
+      // Don't throw to allow fallback
     }
 
     // Create A-Frame scene element
@@ -31,11 +32,23 @@ export async function initScene(options = {}) {
     scene.setAttribute('vr-mode-ui', 'enabled: false');
     scene.setAttribute('renderer', 'antialias: true; alpha: true');
 
-    // Configure AR.js attributes
+    // Configure AR.js attribute string
     const arjsConfig = `sourceType: ${sourceType}; trackingMethod: ${trackingMethod}; debugUIEnabled: ${debug}; patternRatio: 0.5; cameraParametersUrl: /data/camera_para.dat; detectionMode: mono`;
     scene.setAttribute('arjs', arjsConfig);
 
-    // Add camera element depending on gps-camera usage
+    // Dynamically create <a-assets> and preload models
+    if (models.length > 0) {
+      const assets = document.createElement('a-assets');
+      for (const model of models) {
+        const assetItem = document.createElement('a-asset-item');
+        assetItem.setAttribute('id', model.id);
+        assetItem.setAttribute('src', model.src);
+        assets.appendChild(assetItem);
+      }
+      scene.appendChild(assets);
+    }
+
+    // Add camera with optional gps-camera component
     const camera = document.createElement('a-camera');
     if (useGpsCamera) {
       camera.setAttribute('gps-camera', '');
@@ -52,7 +65,7 @@ export async function initScene(options = {}) {
     await new Promise((resolve, reject) => {
       scene.addEventListener('loaded', resolve, { once: true });
       scene.addEventListener('error', () => reject(new Error('Scene failed to load')), { once: true });
-      setTimeout(() => reject(new Error('Scene load timeout')), 10000);
+      setTimeout(() => reject(new Error('Scene load timeout')), 20000);
     });
 
     console.log('AR Scene initialized successfully.');
