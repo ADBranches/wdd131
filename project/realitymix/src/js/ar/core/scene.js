@@ -17,13 +17,13 @@ export async function initScene(options = {}) {
     sourceType = 'webcam',
     debug = false,
     useGpsCamera = false,
-    models = [],  // New: accepts list of models { id, src }
+    models = [],  // Accept list of models { id, src }
   } = options;
 
   try {
     if (!navigator.xr) {
       console.warn('WebXR not supported; proceeding with AR.js fallback');
-      // Don't throw to allow fallback
+      // Don't throw; allow fallback
     }
 
     // Create A-Frame scene element
@@ -36,13 +36,24 @@ export async function initScene(options = {}) {
     const arjsConfig = `sourceType: ${sourceType}; trackingMethod: ${trackingMethod}; debugUIEnabled: ${debug}; patternRatio: 0.5; cameraParametersUrl: /data/camera_para.dat; detectionMode: mono`;
     scene.setAttribute('arjs', arjsConfig);
 
-    // Dynamically create <a-assets> and preload models
+    // Dynamically create <a-assets> and preload models with error and load event listeners
     if (models.length > 0) {
       const assets = document.createElement('a-assets');
       for (const model of models) {
         const assetItem = document.createElement('a-asset-item');
         assetItem.setAttribute('id', model.id);
         assetItem.setAttribute('src', model.src);
+
+        assetItem.addEventListener('error', (evt) => {
+          console.error(`Error loading asset: ${model.src}`, evt);
+          // Optionally emit 'loaded' to prevent scene load hang
+          assetItem.emit('loaded');
+        });
+
+        assetItem.addEventListener('loaded', () => {
+          console.log(`Asset loaded successfully: ${model.src}`);
+        });
+
         assets.appendChild(assetItem);
       }
       scene.appendChild(assets);
@@ -61,11 +72,19 @@ export async function initScene(options = {}) {
     if (!arRoot) throw new Error('No #ar-root element found in DOM');
     arRoot.appendChild(scene);
 
+    // Debug logs on scene events
+    scene.addEventListener('loaded', () => {
+      console.log('Scene loaded event fired');
+    });
+    scene.addEventListener('error', () => {
+      console.error('Scene error event fired');
+    });
+
     // Await scene to finish loading with timeout and error handling
     await new Promise((resolve, reject) => {
       scene.addEventListener('loaded', resolve, { once: true });
       scene.addEventListener('error', () => reject(new Error('Scene failed to load')), { once: true });
-      setTimeout(() => reject(new Error('Scene load timeout')), 20000);
+      setTimeout(() => reject(new Error('Scene load timeout')), 20000); // 20 seconds timeout
     });
 
     console.log('AR Scene initialized successfully.');
