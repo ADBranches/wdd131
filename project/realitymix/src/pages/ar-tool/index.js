@@ -14,7 +14,6 @@ export async function initARTool() {
       throw new Error('Webcam access not supported on this device');
     }
 
-    // Initialize scene with retry mechanism
     const scene = await initScene({
       trackingMethod: 'best',
       sourceType: 'webcam',
@@ -26,7 +25,6 @@ export async function initARTool() {
       throw new Error('Scene initialization returned null');
     }
 
-    // Initialize marker tracking
     const module = await loadARModule('marker-tracking');
     if (!module?.default) {
       throw new Error('Failed to load marker-tracking module');
@@ -36,7 +34,7 @@ export async function initARTool() {
     const markerOptions = {
       marker: 'hiro',
       modelPath: 'furniture/chair.glb',
-      modelOptions: { scale: '0.5 0.5 0.5' } // A-Frame expects string
+      modelOptions: { scale: '0.5 0.5 0.5' } 
     };
 
     const marker = await initMarkerTracking(scene, markerOptions);
@@ -44,7 +42,6 @@ export async function initARTool() {
       throw new Error('Failed to initialize marker or model');
     }
 
-    // Initialize controls with enhanced options
     const controls = ARControls.init(document.getElementById('ar-root'), {
       onReset: async () => {
         try {
@@ -63,12 +60,11 @@ export async function initARTool() {
         }
       },
       onToggleModel: (visible) => {
-        marker.setAttribute('visible', visible); // Use A-Frame attribute for reliability
+        marker.setAttribute('visible', visible);
         ARControls.update(controls, { modelVisible: visible });
       }
     });
 
-    // Show welcome modal with accessibility
     Modal.show({
       title: 'Welcome to RealityMix AR',
       content: 'Point your camera at a Hiro marker to view the 3D model. Ensure good lighting and a stable surface.',

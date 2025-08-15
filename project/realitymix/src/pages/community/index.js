@@ -15,7 +15,6 @@ export async function initCommunity() {
     <button class="ar-showcase-btn" aria-label="View AR showcase">AR Showcase</button>
   `;
 
-  // Add AR showcase button
   const showcaseBtn = $('.ar-showcase-btn', container);
   showcaseBtn.addEventListener('click', () => {
     Modal.show({

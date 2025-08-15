@@ -9,14 +9,12 @@ export async function initLearn() {
   const container = $('[data-ar-viewport]') || createEl('div', { class: 'container' });
   if (!$('[data-ar-viewport]')) document.body.appendChild(container);
 
-  // Render static content
   container.innerHTML = `
     <h1>Learn AR</h1>
     <p>Explore educational 3D models and AR experiences.</p>
     <button class="ar-demo-btn" aria-label="Try AR demo">Try AR Demo</button>
   `;
 
-  // Add AR demo button
   const demoBtn = $('.ar-demo-btn', container);
   demoBtn.addEventListener('click', async () => {
     try {
