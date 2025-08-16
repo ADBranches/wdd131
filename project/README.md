@@ -93,7 +93,7 @@ This project is private/internal.
 
 For questions or support, please contact:
 
-Your Name – edwinkambale33@gmail.com
+Author's Name – edwinkambale33@gmail.com
 
 Project repository: `https://github.com/ADBranches/wdd131.git`
 
